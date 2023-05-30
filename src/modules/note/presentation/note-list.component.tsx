@@ -21,5 +21,5 @@ export default async function NoteList() {
         })}
       </div>
     </div>
-  ) 
+  )
 }

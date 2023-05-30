@@ -18,13 +18,13 @@ export async function getNotesAdapter(): Promise<NoteModel[]> {
     cache: 'no-store',
   });
   const data: GetNotesResponse = await res.json();
-  const { items: noteEntities } = data;
+  const { items: noteEntities = [] } = data;
   const noteModels = noteEntities.map((noteEntity) => NoteEntityToNoteModel({ noteEntity }));
   return noteModels;
 }
 
 export async function createNoteAdapter({ title, content }: { title: string; content: string }) {
-  await fetch('http://127.0.0.1:8090/api/collections/notes/records', {
+  await fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
